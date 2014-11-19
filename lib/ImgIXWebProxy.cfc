@@ -102,12 +102,12 @@ component
 	/**
 	* I encode the given URL for use as the "path" portion of the ImgIX web proxy url.
 	* 
-	* @targetUrl I am the full URL (including protocol, excluding ImgIX commands).
+	* @urlComponent I am the URL component that needs to be encoded.
 	* @output false
 	*/
-	private string function urlEncodeComponent( required string targetUrl ) {
+	private string function urlEncodeComponent( required string urlComponent ) {
 
-		targetUrl = urlEncodedFormat( targetUrl, "utf-8" );
+		urlComponent = urlEncodedFormat( urlComponent, "utf-8" );
 
 		// At this point, we have a key that has been encoded too aggressively by
 		// ColdFusion. Now, we have to go through and un-escape the characters that
@@ -115,20 +115,20 @@ component
 
 		// The following are "unreserved" characters in the RFC 3986 spec for Uniform
 		// Resource Identifiers (URIs) - http://tools.ietf.org/html/rfc3986#section-2.3
-		targetUrl = replace( targetUrl, "%2E", ".", "all" );
-		targetUrl = replace( targetUrl, "%2D", "-", "all" );
-		targetUrl = replace( targetUrl, "%5F", "_", "all" );
-		targetUrl = replace( targetUrl, "%7E", "~", "all" );
+		urlComponent = replace( urlComponent, "%2E", ".", "all" );
+		urlComponent = replace( urlComponent, "%2D", "-", "all" );
+		urlComponent = replace( urlComponent, "%5F", "_", "all" );
+		urlComponent = replace( urlComponent, "%7E", "~", "all" );
 
 		// Technically, the "/" characters can be encoded and will work. However, I just 
 		// don't like the way the URL looks with nothing but escaped path markers. This 
 		// one is just for personal preference.
-		targetUrl = replace( targetUrl, "%2F", "/", "all" );
+		urlComponent = replace( urlComponent, "%2F", "/", "all" );
 
 		// This one isn't necessary; but, I think it makes for a more attractive URL.
-		targetUrl = replace( targetUrl, "%20", "+", "all" );
+		urlComponent = replace( urlComponent, "%20", "+", "all" );
 
-		return( targetUrl );
+		return( urlComponent );
 
 	}
 

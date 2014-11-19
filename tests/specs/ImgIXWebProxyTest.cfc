@@ -58,6 +58,21 @@ component
 
 		assert( proxyUrl == "#testDomain#/https%3A//s3.amazonaws.com/testing.bennadel.com/pluploads/global-upload/upload-1416396506299/Ben%252Bjune%2B%2528groovy%2529%2521.png%3FAWSAccessKeyId%3DAKIAJEWTQBA6QCGG6FSA%26Expires%3D1447932506%26Signature%3Dwm0TDqjJO%252BEPnjff1Tc95oUWqsY%253D?w=300&h=300&s=fbb15bdb95e3bee246a0e905f461c9ae" );
 		
+
+		// Generate a Web Proxy URL using commands that have special charcters
+		var proxyUrl = imgIx.getWebProxyUrl( 
+			"http://www.bennadel.com/images/header/ye_wang_simon_free_spencer_strickland.jpg",
+			{
+				txt = "Groove Sauce (woot)!",
+				txtsize = 62,
+				txtclr = "FFFFFF",
+				txtalign = "middle,center",
+				txtfont = "Futura Condensed Medium"
+			}
+		);
+		
+		assert( proxyUrl == "#testDomain#/http%3A//www.bennadel.com/images/header/ye_wang_simon_free_spencer_strickland.jpg?txtalign=middle%2Ccenter&txtclr=FFFFFF&txtsize=62&txt=Groove+Sauce+%28woot%29%21&txtfont=Futura+Condensed+Medium&s=9f286547a76b36bbdd01470c634976c6" );
+		
 	}
 
 }

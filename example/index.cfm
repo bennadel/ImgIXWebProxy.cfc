@@ -58,4 +58,24 @@
 
 	writeOutput( proxyUrl );
 
+
+	// ------------------------------------------------------ //
+	writeOutput( "<br /><br />" );
+	// ------------------------------------------------------ //
+	
+
+	// Generate a Web Proxy URL with some text overlay.
+	proxyUrl = imgIx.getWebProxyUrl( 
+		"http://www.bennadel.com/images/header/ye_wang_simon_free_spencer_strickland.jpg",
+		{
+			txt = "Groove Sauce (woot)!",
+			txtsize = 62,
+			txtclr = "FFFFFF",
+			txtalign = "middle,center",
+			txtfont = "Futura Condensed Medium"
+		}
+	);
+
+	writeOutput( proxyUrl );
+
 </cfscript>

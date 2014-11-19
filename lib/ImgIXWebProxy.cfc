@@ -41,7 +41,7 @@ component
 		required any commands
 		) {
 
-		var encodedTargetUrl = urlEncodeTargetUrl( targetUrl );
+		var encodedTargetUrl = urlEncodeComponent( targetUrl );
 
 		var normalizedCommands = normalizeCommands( commands );
 
@@ -87,7 +87,10 @@ component
 
 		for ( var command in commands ) {
 
-			arrayAppend( pairs, "#lcase( command )#=#commands[ command ]#" );
+			var name = lcase( command );
+			var value = urlEncodeComponent( commands[ command ] );
+
+			arrayAppend( pairs, "#name#=#value#" );
 
 		}
 
@@ -102,7 +105,7 @@ component
 	* @targetUrl I am the full URL (including protocol, excluding ImgIX commands).
 	* @output false
 	*/
-	private string function urlEncodeTargetUrl( required string targetUrl ) {
+	private string function urlEncodeComponent( required string targetUrl ) {
 
 		targetUrl = urlEncodedFormat( targetUrl, "utf-8" );
 
